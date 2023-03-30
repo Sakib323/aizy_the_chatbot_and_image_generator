@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@null">
+
+
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/search_bar"
+            android:layout_width="200dp"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="30dp"
+            android:visibility="gone"
+
+            app:cardBackgroundColor="@color/black"
+            android:layout_height="30dp">
+
+
+            <EditText
+                android:id="@+id/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/button"
+                android:background="@drawable/background_for_edit_text"
+                android:drawablePadding="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:hint="your query here"
+                android:paddingLeft="15dp"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:visibility="gone"
+            android:id="@+id/cancel"
+            android:layout_width="30dp"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="30dp"
+            android:layout_marginLeft="5dp"
+            app:cardBackgroundColor="@color/black"
+            android:layout_height="30dp">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/cancel"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/search"
+            android:layout_width="30dp"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="30dp"
+            android:layout_marginLeft="5dp"
+            app:cardBackgroundColor="@color/black"
+            android:layout_height="30dp">
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/anim"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/search"/>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

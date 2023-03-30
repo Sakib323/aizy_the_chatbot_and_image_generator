@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1365" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/action_bar_background.xml" value="0.157" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/background_for_edit_text.xml" value="0.157" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/bg_for_buy.xml" value="0.1365" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/bg_message_bot.xml" value="0.157" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/bg_message_user.xml" value="0.157" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/button.xml" value="0.1" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/card_1.xml" value="0.157" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/drop_down.xml" value="0.1475" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.1365" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1365" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/ic_baseline_local_phone_24.xml" value="0.1365" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/ic_baseline_mic_24.xml" value="0.1365" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/ic_baseline_password_24.xml" value="0.1365" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1365" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.1365" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1365" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1365" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/location.xml" value="0.1365" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/main_ui_background.xml" value="0.157" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/msg_1.xml" value="0.1345" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/person.xml" value="0.1365" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/price.xml" value="0.1475" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/setting_bg_edit_text.xml" value="0.1475" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/activity_billing.xml" value="0.27704147071398033" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/activity_main_ui.xml" value="0.27704147071398033" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/item_message_bot.xml" value="0.2" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/item_message_user.xml" value="0.25" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/login.xml" value="0.27704147071398033" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/onstart.xml" value="0.25" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/pop_up_view.xml" value="0.22" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/popup_window.xml" value="0.33" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/profile.xml" value="0.25" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/settings.xml" value="0.25" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/view.xml" value="0.3375" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/view_info.xml" value="0.27704147071398033" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.14" />
+      </ProjectState>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Aizy</string>
+    <string name="accessibility_service_description">Turn on service to perform the action</string>
+    <string name="accessibility_service_label">Macro</string>
+    <string name="app_id">ca-app-pub-4028866603340541~8065605932</string>
+</resources>

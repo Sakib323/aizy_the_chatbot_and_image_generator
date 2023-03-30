@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    android:layout_centerHorizontal="true"
+    android:layout_width="320dp"
+    android:layout_height="650dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    app:cardMaxElevation="12dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    app:cardBackgroundColor="#000020">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            android:layout_marginBottom="20dp"
+            app:lottie_rawRes="@raw/splash_screen"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/car_company"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:editable="false"
+            android:ems="10"
+            android:background="@drawable/background_for_edit_text"
+            android:drawableLeft="@drawable/person"
+            android:drawableRight="@drawable/drop_down"
+            android:paddingRight="15dp"
+            android:drawablePadding="15dp"
+            android:hint="Voice Model"
+            android:textColorHint="@color/white"
+            android:fontFamily="sans-serif-condensed"
+            android:paddingLeft="15dp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/car_model"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:editable="false"
+            android:ems="10"
+            android:background="@drawable/background_for_edit_text"
+            android:drawableLeft="@drawable/person"
+            android:drawableRight="@drawable/drop_down"
+            android:paddingRight="15dp"
+            android:drawablePadding="15dp"
+            android:hint="AI Creativity Level"
+            android:textColorHint="@color/white"
+            android:fontFamily="sans-serif-condensed"
+            android:paddingLeft="15dp" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_for_edit_text"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:color="@color/white"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="40dp"
+                android:text="set pitch level"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <SeekBar
+                android:id="@+id/pitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/message"
+                android:layout_marginTop="0dp" />
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_for_edit_text"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/message2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:color="@color/white"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="40dp"
+                android:text="set speech rate"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <SeekBar
+                android:id="@+id/speech_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/message2"
+                android:layout_marginTop="0dp"
+                />
+
+        </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/wake_up_word"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/background_for_edit_text"
+            android:drawableLeft="@drawable/ic_baseline_mic_24"
+            android:drawablePadding="15dp"
+            android:hint="set wake up word like listen"
+            android:textColorHint="@color/white"
+            android:fontFamily="sans-serif-condensed"
+            android:paddingLeft="15dp" />
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/next_btn"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="#FA016D"
+        android:layout_height="70dp">
+
+        <TextView
+            android:id="@+id/textview_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="SUBMIT"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
+</androidx.cardview.widget.CardView>

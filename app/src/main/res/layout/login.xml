@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    android:layout_centerHorizontal="true"
+    android:layout_width="320dp"
+    android:layout_height="650dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    app:cardMaxElevation="12dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    app:cardBackgroundColor="#000020">
+
+
+    <LinearLayout
+        android:id="@+id/linear_layout_1"
+        android:layout_width="match_parent"
+        android:padding="20dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            android:layout_marginBottom="10dp"
+            app:lottie_rawRes="@raw/splash_screen"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login Here"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+
+
+
+
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/background_for_edit_text"
+            android:drawableLeft="@drawable/ic_baseline_local_phone_24"
+            android:drawablePadding="15dp"
+            android:hint="phone number"
+            android:textColorHint="@color/white"
+            android:fontFamily="sans-serif-condensed"
+            android:paddingLeft="15dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/background_for_edit_text"
+            android:drawableLeft="@drawable/ic_baseline_password_24"
+            android:drawablePadding="15dp"
+            android:hint="set a password"
+            android:textColorHint="@color/white"
+            android:fontFamily="sans-serif-condensed"
+            android:paddingLeft="15dp" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_1"
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading"/>
+
+
+        <TextView
+            android:id="@+id/sign_up"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:text="sign up"/>
+
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/login"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="#FA016D"
+        android:layout_height="70dp">
+
+        <TextView
+            android:id="@+id/textview_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Log in"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.cardview.widget.CardView>
