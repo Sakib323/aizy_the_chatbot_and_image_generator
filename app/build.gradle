@@ -5,13 +5,12 @@ plugins {
 
 android {
     compileSdk 33
-
     defaultConfig {
         applicationId "com.itsolution.fetchdatafromapp"
         minSdk 21
         targetSdk 33
-        versionCode 13
-        versionName "6.7.0"
+        versionCode 16
+        versionName "8.9.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,6 +29,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.anjlab.android.iab.v3:library:2.0.3'
     implementation 'com.android.billingclient:billing:5.1.0'
     implementation project(':nativetemplates')
@@ -53,5 +53,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:23.0.8'
     implementation 'com.google.firebase:firebase-firestore:24.3.1'
     implementation 'com.microsoft.cognitiveservices.speech:client-sdk:1.19.0'
-
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
 }

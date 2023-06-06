@@ -28,7 +28,7 @@
         <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/price.xml" value="0.1475" />
         <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/drawable/setting_bg_edit_text.xml" value="0.1475" />
         <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/activity_billing.xml" value="0.27704147071398033" />
-        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/activity_main_ui.xml" value="0.27704147071398033" />
         <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/item_message_bot.xml" value="0.2" />
@@ -39,6 +39,7 @@
         <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/popup_window.xml" value="0.33" />
         <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/profile.xml" value="0.25" />
         <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/settings.xml" value="0.25" />
+        <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/subscription_pop_up.xml" value="0.27704147071398033" />
         <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/view.xml" value="0.3375" />
         <entry key="..\:/Users/Sakib Ahmed/Desktop/project/fetchdatafromapp/app/src/main/res/layout/view_info.xml" value="0.27704147071398033" />
       </map>

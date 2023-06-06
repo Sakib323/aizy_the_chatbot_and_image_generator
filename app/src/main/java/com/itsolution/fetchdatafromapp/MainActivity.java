@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -35,6 +36,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
@@ -66,12 +75,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.microsoft.cognitiveservices.speech.SpeechConfig;
 import com.microsoft.cognitiveservices.speech.SpeechRecognizer;
+import com.squareup.picasso.Picasso;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -87,7 +99,20 @@ public class MainActivity extends AppCompatActivity {
     private EditText mEditText;
     private CardView mButton;
     private String apiUrl = "https://api.openai.com/v1/completions";
-    private String accessToken = "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";
+    private Boolean txt_bool=true,img_bool=false;
+
+    public String url= null;
+
+    private String imgUrl="https://api.openai.com/v1/images/generations";
+    String apiKey = "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";
+    String model = "image-alpha-001";
+    int numImages = 1;
+    String size = "512x512";
+    String responseFormat = "url";
+
+    public TextView question;
+
+    private String accessToken = "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";
     private List < Message > mMessages;
     public SharedPreferences sharedPreferences,sharedPreferences2;
     TextToSpeech textToSpeech;
@@ -105,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
     public int number_click;
     Boolean buy_voice=false;
     public  RecyclerView recyclerView;
-
+    public ImageView imageView;
     private boolean show_ads,txt2voice,speech_recognizer=false;
 
     public RewardedAd mrewardedAd;
@@ -114,7 +139,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView profile;
     public Boolean show_pop_up=false,sub;
 
-    public RelativeLayout info;
+    public LottieAnimationView loading_img;
+    public CardView card_img;
+
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
 
@@ -133,16 +160,30 @@ public class MainActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.hide();
 
+
+
+        DatabaseReference api=FirebaseDatabase.getInstance().getReference().child("api_key").child("key");
+
+        api.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                apiKey=snapshot.getValue(String.class);
+                accessToken=snapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+        });
+
+
         recyclerView=findViewById(R.id.recycler_view);
-
-        info =findViewById(R.id.info);
-
+        imageView=findViewById(R.id.img_holder);
         Calendar calendar = Calendar.getInstance();
         Date today = calendar.getTime();
         DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         String today_date = dateFormat.format(today);
-
-
         SharedPreferences user_info=getSharedPreferences("user_info",MODE_PRIVATE);
         phone=user_info.getString("phone","");
         sub=user_info.getBoolean("need_subscription",false);
@@ -167,7 +208,6 @@ public class MainActivity extends AppCompatActivity {
                     txt2voice=true;
                     speech_recognizer=true;
 
-                    recognizer_overlay();
 
 
                 }
@@ -244,6 +284,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
 
         onstart=getSharedPreferences("registered",MODE_PRIVATE);
@@ -428,6 +470,39 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MessageAdapter(mMessages);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
+
+        CardView txt,img;
+
+        txt=findViewById(R.id.txt);
+        img=findViewById(R.id.img);
+        loading_img=findViewById(R.id.loading);
+        card_img=findViewById(R.id.img_card);
+        question=findViewById(R.id.question);
+
+        txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_img.setVisibility(View.GONE);
+                img.setCardBackgroundColor(Color.BLACK);
+                txt.setCardBackgroundColor(Color.RED);
+                mEditText.setHint("Explain quantum computing");
+                txt_bool=true;
+                img_bool=false;
+            }
+        });
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mRecyclerView.setVisibility(View.GONE);
+                img.setCardBackgroundColor(Color.RED);
+                txt.setCardBackgroundColor(Color.BLACK);
+                mEditText.setHint("Image of a cat sitting on a couch");
+                txt_bool=false;
+                img_bool=true;
+            }
+        });
+
+
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -435,13 +510,20 @@ public class MainActivity extends AppCompatActivity {
 
                 number_click=number_click+1;
                 if(number_click==5 && show_ads==true){
-
-
                     load_id();
                     number_click=0;
                 }
-                btn_click=true;
-                callAPI();
+
+                if(txt_bool==true){
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                    callAPI();
+                }
+                if(img_bool==true){
+                    card_img.setVisibility(View.VISIBLE);
+                    imageView.setVisibility(View.GONE);
+                    loading_img.setVisibility(View.VISIBLE);
+                    img_generator();
+                }
 
 
             }
@@ -555,44 +637,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private static final int SPEECH_REQUEST_CODE = 0;
-    private void displaySpeechRecognizer() {
-        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        startActivityForResult(intent, SPEECH_REQUEST_CODE);
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == SPEECH_REQUEST_CODE && resultCode == RESULT_OK) {
-            List<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            String spokenText = results.get(0);
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
     private void callAPI() {
 
 
         template.setVisibility(View.GONE);
-        info.setVisibility(View.GONE);
 
 
-        String text=query;
+        String text= mEditText.getText().toString();
 
-        if (btn_click==true){
-            text = mEditText.getText().toString();
-            btn_click=false;
-            mMessages.add(new Message(text, true));
-            mAdapter.notifyItemInserted(mMessages.size() - 1);
-        }
+        mMessages.add(new Message(text, true));
+        mAdapter.notifyItemInserted(mMessages.size() - 1);
+
 
 
         Log.e("text",text);
 
-
         mEditText.getText().clear();
         mRecyclerView.setVisibility(View.VISIBLE);
-
+        imageView.setVisibility(View.GONE);
 
         JSONObject requestBody = new JSONObject();
         try {
@@ -657,44 +719,95 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void startService(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if(Settings.canDrawOverlays(this)) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    startForegroundService(new Intent(this, ForegroundService.class));
+
+    private void img_generator(){
+
+        String img_query= mEditText.getText().toString();
+        mEditText.setHint("Image of a cat sitting on a couch");
+
+        mEditText.setText("");
+        question.setText(img_query);
+
+        mRecyclerView.setVisibility(View.GONE);
+        template.setVisibility(View.GONE);
+
+
+
+        // Create a JSON object to represent the request body
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("model", model);
+            requestBody.put("prompt", img_query);
+            requestBody.put("num_images", numImages);
+            requestBody.put("size", size);
+            requestBody.put("response_format", responseFormat);
+        } catch (JSONException e) {
+            Log.e("TAG", "Failed to create request body: " + e.getMessage());
+            return;
+        }
+
+        // Define the media type for the request body
+        MediaType JSON = MediaType.get("application/json; charset=utf-8");
+
+        // Build the request
+        String authorizationHeader = "Bearer " + apiKey;
+        okhttp3.Request request = new okhttp3.Request.Builder()
+                .url("https://api.openai.com/v1/images/generations")
+                .post(RequestBody.create(requestBody.toString(), JSON))
+                .header("Authorization", authorizationHeader)
+                .build();
+
+        OkHttpClient client = new OkHttpClient();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.e("TAG", "Failed to execute request: " + e.getMessage());
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull okhttp3.Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String responseBody = response.body().string();
+
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = new JSONObject(responseBody);
+                        JSONArray dataArray = jsonObject.getJSONArray("data");
+                        JSONObject dataObject = dataArray.getJSONObject(0);
+                        url = dataObject.getString("url");
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                imageView.setVisibility(View.VISIBLE);
+                                Picasso.get().load(url).into(imageView);
+                                loading_img.setVisibility(View.GONE);
+                                Log.e("Url ", url);
+                            }
+                        });
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+
+
                 } else {
-                    startService(new Intent(this, ForegroundService.class));
+                    Log.e("TAG", "Request failed with error code: " + response.code());
                 }
             }
-        }else{
-            startService(new Intent(this, ForegroundService.class));
-        }
-    }
-
-    public void checkOverlayPermission(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!Settings.canDrawOverlays(this)) {
-                Intent myIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-                startActivity(myIntent);
-            }
-
-        }
-
-
-        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.RECORD_AUDIO},1);
-
-
-        }
-
+        });
 
     }
+
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        startService();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 
     private void profile(){
@@ -774,64 +887,6 @@ public class MainActivity extends AppCompatActivity {
         pass.setText(saved_pass);
         phone.setText(saved_phone);
 
-
-
-    }
-
-    private void recognizer_overlay(){
-
-
-        checkOverlayPermission();
-        startService();
-
-        window=new Window(MainActivity.this);
-        window.open();
-
-
-        SpeechConfig speechConfig = SpeechConfig.fromSubscription("e6c1298b122b4c29aac441240ba73c0d", "southeastasia");
-        recognizer = new SpeechRecognizer(speechConfig);
-
-        recognizer.recognizing.addEventListener((s, e) -> {
-            String text = e.getResult().getText();
-        });
-        recognizer.recognized.addEventListener((s, e) -> {
-            String text = e.getResult().getText();
-
-            String for_wake_up_word_searching=text.replaceAll("[,.]","").toLowerCase();
-
-            Log.e("recognized data is ",text);
-
-
-            if(speech_recognizer==false){
-                recognizer.stopContinuousRecognitionAsync();
-            }
-
-            if(for_wake_up_word_searching.contains(wake_up_word) && !textToSpeech.isSpeaking() ){
-                query=text.replace(wake_up_word,"");
-                callAPI();
-
-            }
-
-        });
-        recognizer.canceled.addEventListener((s, e) -> {
-            String error = e.getErrorDetails();
-
-        });
-        recognizer.sessionStarted.addEventListener((s, e) -> {
-
-        });
-        recognizer.sessionStopped.addEventListener((s, e) -> {
-
-        });
-
-
-        if(speech_recognizer==true){
-            recognizer.startContinuousRecognitionAsync();
-        }else{
-            recognizer.stopContinuousRecognitionAsync();
-        }
-
-        //recognizer.stopContinuousRecognitionAsync();
 
 
     }

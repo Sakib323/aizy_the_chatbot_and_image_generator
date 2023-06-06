@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,87 +8,169 @@
     android:background="#000020"
     android:padding="5dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_height="50dp">
 
-        <ImageView
-            android:id="@+id/setting"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_baseline_settings_24" />
-
-        <ImageView
-
-            android:id="@+id/profile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ic_baseline_person_24" />
-        
-
-    </RelativeLayout>
-
-
-
-
-    <com.google.android.ads.nativetemplates.TemplateView
-        android:layout_marginTop="20dp"
-        android:id="@+id/my_template"
-        app:gnt_template_type="@layout/gnt_medium_template_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:padding="10dp"
-        android:id="@+id/info"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:cardCornerRadius="15dp">
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/setting"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_baseline_settings_24" />
+
 
             <RelativeLayout
-                android:padding="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/card_1">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
 
-                <TextView
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="To initiate a voice chat, you can use the default wake up word 'Listen' followed by your query. This feature allows you to continue the conversation even when the app is not open or running, as long as you use the wake up word in your subsequent queries. If you wish to remove a dynamic island, simply tap on it."
-                    android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/img"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="5dp"
+                        app:cardBackgroundColor="#000000"
+                        app:cardCornerRadius="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Image"
+                            android:textColor="@color/white" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/txt"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="5dp"
+                        app:cardBackgroundColor="#FF0202"
+                        app:cardCornerRadius="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Text"
+                            android:textColor="@color/white" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
 
             </RelativeLayout>
 
 
+            <ImageView
+                android:id="@+id/profile"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_baseline_person_24" />
+
+
+        </RelativeLayout>
+
+
+        <com.google.android.ads.nativetemplates.TemplateView
+            android:id="@+id/my_template"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:gnt_template_type="@layout/gnt_medium_template_view" />
+
+
+        <androidx.cardview.widget.CardView
+            android:visibility="gone"
+            android:id="@+id/img_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="50dp"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_1">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/image_loading" />
+
+                <ImageView
+                    android:id="@+id/img_holder"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/next_btn"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_gravity="bottom"
+                app:cardBackgroundColor="#FA016D">
+
+                <TextView
+                    android:id="@+id/question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="your query here"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
 
         </androidx.cardview.widget.CardView>
 
-    </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="50dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:visibility="invisible">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
 
-
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:visibility="invisible"
-        android:layout_height="0dp"
-        android:padding="10dp"
-        android:layout_weight="1">
-    </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
 
 
 
@@ -98,11 +180,10 @@
 
 
     <RelativeLayout
-        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
         android:id="@+id/chat_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
 
@@ -114,7 +195,7 @@
             android:background="@drawable/background_for_edit_text"
             android:drawablePadding="15dp"
             android:fontFamily="sans-serif-medium"
-            android:hint="ask me anything"
+            android:hint="Explain quantum computing"
             android:paddingLeft="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
@@ -140,4 +221,4 @@
     </RelativeLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

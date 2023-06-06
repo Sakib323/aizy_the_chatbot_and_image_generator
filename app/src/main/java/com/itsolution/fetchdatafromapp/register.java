@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.telephony.TelephonyManager;
@@ -59,6 +60,7 @@ public class register extends AppCompatActivity implements BillingProcessor.IBil
     public RewardedAd mrewardedAd;
     public String rewarded_ad_id=null;
 
+    public String update_app;
     private BillingProcessor bp;
     private PurchaseInfo one_month,three_month,year_pack;
     private String license_key="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqo/Fr0VYV5Rimk6ePEMto0kzrhj8++KXS878tDoKjipznTlunF8tP3P9RgTIObbBkp4z4AbS7jMRUFf9nia230r7xoUUk2sdx3yO1DXTqNe/kWoS815XRALAxgdoKHSnUcZn+0RNmpsl8WLJfMB6WOrDqgseV99c94sOspLrBDlMh3G13686Tb/h3RY3WVZnLProbfBCB5NYvnv6ssgxj2/YvDDTX274tCU1HJKI7Mbs32k51T0fHoYefaVSvwdt6+yEXl9UW5sBTyL7obGgEltlq6/tsOl2Zk+BDrbmsR2GEbza3qItUsHu8xSf4IeoHTzntFALTthaVSo2TEADuwIDAQAB";
@@ -133,18 +135,48 @@ public class register extends AppCompatActivity implements BillingProcessor.IBil
 
                     rewarded_ad_id = snapshot.child("app_ads").child("rewarded_video_ad").getValue(String.class);
                     String subscription=snapshot.child("User").child(phone).child("subscription").getValue(String.class);
-                    if(rewarded_ad_id.contains("empty")){
-                        Intent intent =new Intent(register.this,MainActivity.class);
-                        startActivity(intent);
-                    }else{
-                        if(subscription.contains("null")){
-                            load_ads();
+
+                    DatabaseReference update=FirebaseDatabase.getInstance().getReference().child("update");
+                    update.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                            update_app=snapshot.getValue(String.class);
+
+
+                            if(update_app.contains("yes")){
+                                Toast.makeText(register.this, "update the app for further use", Toast.LENGTH_LONG).show();
+                                final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                                try {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                                } catch (android.content.ActivityNotFoundException anfe) {
+                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                                }
+                            }else{
+
+
+                                if(rewarded_ad_id.contains("empty")){
+                                    Intent intent =new Intent(register.this,MainActivity.class);
+                                    startActivity(intent);
+                                }else{
+                                    if(subscription.contains("null")){
+                                        load_ads();
+                                    }
+                                    else{
+                                        Intent intent =new Intent(register.this,MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                }
+                            }
+
+
                         }
-                        else{
-                            Intent intent =new Intent(register.this,MainActivity.class);
-                            startActivity(intent);
+
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+
                         }
-                    }
+                    });
+
 
 
                     //ca-app-pub-3940256099942544/5224354917
@@ -206,6 +238,10 @@ public class register extends AppCompatActivity implements BillingProcessor.IBil
             @Override
             public void onAdFailedToLoad(LoadAdError loadAdError) {
                 super.onAdFailedToLoad(loadAdError);
+
+                Intent intent =new Intent(register.this,MainActivity.class);
+                startActivity(intent);
+
                 mrewardedAd=null;
 
             }

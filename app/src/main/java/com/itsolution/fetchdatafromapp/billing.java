@@ -4,12 +4,15 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.billingclient.api.BillingClient;
@@ -50,6 +53,22 @@ public class billing extends AppCompatActivity implements BillingProcessor.IBill
         actionBar.hide();
 
 
+        Dialog add_car=new Dialog(billing.this);
+        add_car.setContentView(R.layout.subscription_pop_up);
+        add_car.getWindow().setBackgroundDrawableResource(R.color.transparent);
+        add_car.setCancelable(true);
+
+        CardView dismiss=add_car.findViewById(R.id.dismiss);
+
+        dismiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                add_car.dismiss();
+            }
+        });
+
+        CardView btn=add_car.findViewById(R.id.btn);
+        TextView price=add_car.findViewById(R.id.price);
         bp=new BillingProcessor(billing.this,license_key,this);
         bp.initialize();
 
@@ -57,7 +76,16 @@ public class billing extends AppCompatActivity implements BillingProcessor.IBill
         one_month.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bp.subscribe(billing.this,one_month_pack);
+                add_car.show();
+                price.setText("USD 10 / Month");
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        bp.subscribe(billing.this,one_month_pack);
+                    }
+                });
+
+
             }
         });
 
@@ -65,7 +93,20 @@ public class billing extends AppCompatActivity implements BillingProcessor.IBill
         three_month.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bp.subscribe(billing.this,three_month_pack);
+
+                add_car.show();
+
+                price.setText("USD 20 / Three Month");
+
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        bp.subscribe(billing.this,three_month_pack);
+                    }
+                });
+
+
+
             }
         });
 
@@ -73,7 +114,20 @@ public class billing extends AppCompatActivity implements BillingProcessor.IBill
         year.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bp.subscribe(billing.this,yr_pack);
+
+                add_car.show();
+
+                price.setText("USD 60 / One Year");
+
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        bp.subscribe(billing.this,yr_pack);
+                    }
+                });
+
+
+
             }
         });
 
